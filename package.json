@@ -1,0 +1,16 @@
+{
+  "name": "fcm_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fcm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^12.6.0"
+  }
+}
