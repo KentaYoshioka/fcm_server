@@ -1,8 +1,7 @@
-# HABitatX
+# fcm_server
 fcm_server is a JavaScript server that monitors changes in Supabase records and sends push notifications to a smartphone app made with flutter.
 
 # Setup
-## HABitatX
 1. Clone this repository 
    ```bash
    $ git clone https://github.com/SenoOh/fcm_server.git
