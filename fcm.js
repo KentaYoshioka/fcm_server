@@ -23,7 +23,8 @@ const sendPushNotification = async (title, body) => {
             title: title,
             body: body,
         },
-        token: FCMTOKEN, // 送信先のデバイスのFCMトークン
+        // token: FCMTOKEN, // 送信先のデバイスのFCMトークン
+        topic: 'allUsers',
     };
     try {
         const response = await admin.messaging().send(message);
