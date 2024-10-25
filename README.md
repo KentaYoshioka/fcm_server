@@ -16,6 +16,7 @@ fcm_server is a JavaScript server that monitors changes in Supabase records and 
    ```
 4. Copy `.env.example` file and create `.env` file.
 5. Replace in the `.env` file with your own information. 
+6. Place serviceAccountKey.json, the Firebase private key, in the repository. 
 
 ## Linux
 1. Launch
