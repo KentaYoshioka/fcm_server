@@ -28,7 +28,6 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const FCMTOKEN = process.env.FCMTOKEN; // 環境変数からFCMトークンを取得
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
@@ -46,11 +45,11 @@ const sendPushNotification = async (title, body) => {
             title: title,
             body: body,
         },
-        // token: FCMTOKEN, // 送信先のデバイスのFCMトークン
         topic: 'allUsers',
     };
     try {
         const response = await admin.messaging().send(message);
+        InsertNotification(title, body);
         console.log('通知が送信されました:', response);
     } catch (error) {
         console.error('通知の送信に失敗しました:', error);
@@ -87,7 +86,6 @@ const listenForChanges = async () => {
     }, (payload) => {
         const newShopName = payload.new.name; // 新しい店舗の名前
         sendPushNotification('新店舗情報', `${newShopName} が新しくオープンしました！`);
-        InsertNotification('新店舗情報', `${newShopName} が新しくオープンしました！`);
     })
     .on('postgres_changes',{
         event: 'UPDATE',
@@ -96,7 +94,6 @@ const listenForChanges = async () => {
     }, (payload) => {
         const updatedShopName = payload.new.name; // 更新された店舗の名前
         sendPushNotification('店舗更新情報', `${updatedShopName} の情報を更新しました！`);
-        InsertNotification('店舗更新情報', `${updatedShopName} の情報を更新しました！`);
     })
     .on('postgres_changes',{
         event: 'INSERT',
@@ -105,7 +102,6 @@ const listenForChanges = async () => {
     }, (payload) => {
         const newProductTitle = payload.new.title; // 新しい商品のタイトル
         sendPushNotification('新商品情報', `${newProductTitle} が新しく入荷しました！`);
-        InsertNotification('新商品情報', `${newProductTitle} が新しく入荷しました！`);
     })
     .on('postgres_changes',{
         event: 'UPDATE',
@@ -114,7 +110,6 @@ const listenForChanges = async () => {
     }, (payload) => {
         const updatedProductTitle = payload.new.title; // 更新された商品のタイトル
         sendPushNotification('商品更新情報', `${updatedProductTitle} の情報を更新しました！`);
-        InsertNotification('商品更新情報', `${updatedProductTitle} の情報を更新しました！`);
     })
     .subscribe();
 };
