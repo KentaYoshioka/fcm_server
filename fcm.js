@@ -2,11 +2,7 @@ const { createClient } = require('@supabase/supabase-js');
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json'); 
 const dotenv = require('dotenv');
-const express = require('express'); // Expressを使用
 const nodemailer = require('nodemailer');
-const app = express();
-
-app.use(express.json());
 
 // 環境変数をロード
 dotenv.config();
