@@ -6,7 +6,7 @@ In addition, this server sends order information from smartphone app users to th
 # Setup
 1. Clone this repository 
    ```bash
-   $ git clone https://github.com/SenoOh/HABitatX.git
+   $ git clone https://github.com/SenoOh/fcm_server.git
    ```
 2. npm init
    ```bash
